@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import java.util.Comparator;
 public class VisitMeCursorAdapter extends RecyclerView.Adapter<VisitMeCursorAdapter.ViewHolder> implements Filterable{
     private Cursor items;
     private ArrayList<Locations> locations, locationsFiltrado;
+    View.OnClickListener mOnItemClickListener;
 
     public Cursor getCursor(){
         return items;
@@ -37,7 +39,12 @@ public class VisitMeCursorAdapter extends RecyclerView.Adapter<VisitMeCursorAdap
     @Override
     public VisitMeCursorAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main, parent, false);
+        v.setOnClickListener(mOnItemClickListener);
         return new ViewHolder(v);
+    }
+
+    public void setOnItemClickListener(View.OnClickListener itemClickListener) {
+        mOnItemClickListener = itemClickListener;
     }
 
     public void convertirCursor(){
@@ -74,8 +81,8 @@ public class VisitMeCursorAdapter extends RecyclerView.Adapter<VisitMeCursorAdap
         holder.textViewLocation.setText(String.valueOf(locationsFiltrado.get(position).getLocation()));
         holder.textViewExtra.setText(String.valueOf(locationsFiltrado.get(position).getExtra()));
         int visited = locationsFiltrado.get(position).getVisited();
-        if (visited == 1){
-            holder.checkBoxVisited.setChecked(true);
+        if (visited == 0){
+            holder.img.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -114,23 +121,23 @@ public class VisitMeCursorAdapter extends RecyclerView.Adapter<VisitMeCursorAdap
         };
     }
 
+    public Locations getLocation(int posicion) {
+        return locationsFiltrado.get(posicion);
+    }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         // Referencias UI
         public TextView textViewLocation;
         public TextView textViewExtra;
-        public CheckBox checkBoxVisited;
+        public ImageView img;
 
         public ViewHolder(View v) {
             super(v);
+            v.setTag(this);
             textViewLocation = (TextView) v.findViewById(R.id.textViewLocation);
             textViewExtra = (TextView) v.findViewById(R.id.textViewExtra);
-            checkBoxVisited = (CheckBox) v.findViewById(R.id.checkBoxVisited);
-        }
-
-        @Override
-        public void onClick(View view) {
-
+            img = v.findViewById(R.id.imageView);
         }
     }
 }

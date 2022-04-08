@@ -1,6 +1,8 @@
 package asins4.maconman.uv.visitme;
 
-public class Locations {
+import java.io.Serializable;
+
+public class Locations implements Serializable {
     String location;
     String extra;
     int visited;

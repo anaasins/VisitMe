@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.hardware.Sensor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.BaseColumns;
@@ -17,6 +18,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
+
+import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity {
     VisitMeCursorAdapter visitMeAdapter = new VisitMeCursorAdapter();
@@ -74,6 +77,29 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(visitMeAdapter);
+        setListener();
+    }
+
+    public void setListener(){
+        View.OnClickListener onItemClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // This viewHolder will have all required values.
+                RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+                int posicion = viewHolder.getAdapterPosition();
+                Locations loc = visitMeAdapter.getLocation(posicion);
+
+                cursor.moveToPosition(posicion);
+                int index = cursor.getColumnIndex(VisitMeContract.VisitMeEntry._ID);
+                int id = cursor.getInt(index);
+                // Implement the listener!
+                Intent intent = new Intent(getApplicationContext(), FormActivity.class);
+                intent.putExtra("location", loc);
+                intent.putExtra("id", id);
+                startActivity(intent);
+            }
+        };
+        visitMeAdapter.setOnItemClickListener(onItemClickListener);
     }
 
     /** Called when the user taps the Menu button */
