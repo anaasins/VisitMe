@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 visitMeAdapter.ordenAlfabetico();
                 recyclerView.setAdapter(visitMeAdapter);
+                setListener();
                 return true;
             case R.id.anadir:
                 // Do something when the user clicks on the help item
