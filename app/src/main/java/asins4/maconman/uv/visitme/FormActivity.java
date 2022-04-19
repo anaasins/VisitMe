@@ -17,6 +17,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -175,5 +178,41 @@ public class FormActivity extends AppCompatActivity implements LocationListener 
             // other 'case' lines to check for other
             // permissions this app might request.
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.form_menu, menu);
+        if(!update){
+            menu.findItem(R.id.menu_delete).setTitle("Cancelar");
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menu_delete:
+                delete();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void delete(){
+        if (update){
+            VisitMeDbHelper dbHelper = new VisitMeDbHelper(this);
+            // Gets the data repository in write mode
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            // la clausula where
+            String selection = VisitMeContract.VisitMeEntry._ID + " = ?";
+            String[] selectionArgs = { String.valueOf(id) };
+            db.delete(VisitMeContract.VisitMeEntry.TABLE_NAME, selection, selectionArgs);
+        }
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
     }
 }
