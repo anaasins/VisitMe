@@ -14,7 +14,6 @@ public class VisitMeContract {
         public static final String COLUMN_NAME_IMAGEN = "imagen";
         public static final String COLUMN_NAME_EXTRA = "extra";
         public static final String COLUMN_NAME_VISITED = "visited";
-
     }
 
     public static final String SQL_CREATE_ENTRIES =

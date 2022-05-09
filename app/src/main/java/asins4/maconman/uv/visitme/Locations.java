@@ -6,11 +6,13 @@ public class Locations implements Serializable {
     String location;
     String extra;
     int visited;
+    String img;
 
-    public Locations(String location, String extra, int visited) {
+    public Locations(String location, String extra, int visited, String img) {
         this.location = location;
         this.extra = extra;
         this.visited = visited;
+        this.img = img;
     }
 
     public String getLocation() {
@@ -35,5 +37,13 @@ public class Locations implements Serializable {
 
     public void setVisited(int visited) {
         this.visited = visited;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

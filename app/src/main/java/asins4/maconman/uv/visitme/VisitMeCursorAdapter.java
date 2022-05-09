@@ -54,12 +54,14 @@ public class VisitMeCursorAdapter extends RecyclerView.Adapter<VisitMeCursorAdap
             int id_location = items.getColumnIndex(VisitMeContract.VisitMeEntry.COLUMN_NAME_LOCATION);
             int id_extra = items.getColumnIndex(VisitMeContract.VisitMeEntry.COLUMN_NAME_EXTRA);
             int id_visited = items.getColumnIndex(VisitMeContract.VisitMeEntry.COLUMN_NAME_VISITED);
+            int id_img = items.getColumnIndex(VisitMeContract.VisitMeEntry.COLUMN_NAME_IMAGEN);
 
             String location = items.getString(id_location);
             Log.d("locaition", location);
             String extra = items.getString(id_extra);
             int visited = items.getInt(id_visited);
-            Locations loc = new Locations(location, extra, visited);
+            String img = items.getString(id_img);
+            Locations loc = new Locations(location, extra, visited, img);
             Log.d("extra", loc.getExtra());
             locations.add(loc);
         }

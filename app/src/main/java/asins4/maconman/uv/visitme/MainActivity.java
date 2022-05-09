@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
                 BaseColumns._ID,
                 VisitMeContract.VisitMeEntry.COLUMN_NAME_LOCATION,
                 VisitMeContract.VisitMeEntry.COLUMN_NAME_EXTRA,
-                VisitMeContract.VisitMeEntry.COLUMN_NAME_VISITED
+                VisitMeContract.VisitMeEntry.COLUMN_NAME_VISITED,
+                VisitMeContract.VisitMeEntry.COLUMN_NAME_IMAGEN
         };
 
         if(getIntent().getExtras()!=null){
