@@ -1,6 +1,10 @@
 package asins4.maconman.uv.visitme;
 
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -86,6 +92,7 @@ public class VisitMeCursorAdapter extends RecyclerView.Adapter<VisitMeCursorAdap
         if (visited == 0){
             holder.img.setVisibility(View.INVISIBLE);
         }
+
     }
 
     @Override
@@ -142,4 +149,5 @@ public class VisitMeCursorAdapter extends RecyclerView.Adapter<VisitMeCursorAdap
             img = v.findViewById(R.id.imageView);
         }
     }
+
 }

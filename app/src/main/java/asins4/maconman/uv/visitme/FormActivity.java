@@ -87,7 +87,8 @@ public class FormActivity extends AppCompatActivity implements LocationListener 
             editTextLocation.setText(location.getLocation());
             editTextExtra.setText(location.getExtra());
             imageview.setVisibility(View.VISIBLE);
-            imageview.setImageBitmap(getBitmapFromEncodedString(location.getImg()));
+            imageview.setImageBitmap(Bitmap.createScaledBitmap(getBitmapFromEncodedString(location.getImg()), 500, 500, false));
+            //imageview.setImageBitmap(getBitmapFromEncodedString(location.getImg()));
 
             Boolean visited=false;
 
@@ -272,7 +273,8 @@ public class FormActivity extends AppCompatActivity implements LocationListener 
             photo = getEncodedString(theImage);
             Log.d("photo: ", theImage.toString());
             imageview.setVisibility(View.VISIBLE);
-            imageview.setImageBitmap(getBitmapFromEncodedString(photo));
+            imageview.setImageBitmap(Bitmap.createScaledBitmap(getBitmapFromEncodedString(photo), 500, 500, false));
+           // imageview.setImageBitmap(getBitmapFromEncodedString(photo));
         }
     }
 

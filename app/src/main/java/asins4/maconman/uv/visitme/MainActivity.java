@@ -138,38 +138,28 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public void filtrarVisitados(View v){
         Intent intent;
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.noVisitados:
-                // Do something when the user clicks on the new game
-                intent = new Intent(this, MainActivity.class);
-                intent.putExtra("visitado", 0);
-                startActivity(intent);
-                return true;
-            case R.id.visitados:
-                // Do something when the user clicks on the help item
-                intent = new Intent(this, MainActivity.class);
-                intent.putExtra("visitado", 1);
-                startActivity(intent);
-                return true;
-            case R.id.ordenar:
-                // Do something when the user clicks on the help item
-                recyclerView = findViewById(R.id.recyclerview);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                visitMeAdapter.ordenAlfabetico();
-                recyclerView.setAdapter(visitMeAdapter);
-                setListener();
-                return true;
-            case R.id.anadir:
-                // Do something when the user clicks on the help item
-                intent = new Intent(this, FormActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        // Do something when the user clicks on the help item
+        intent = new Intent(this, MainActivity.class);
+        intent.putExtra("visitado", 1);
+        startActivity(intent);
+    }
+
+    public void filtrarNoVisitados(View v){
+        Intent intent;
+        // Do something when the user clicks on the help item
+        intent = new Intent(this, MainActivity.class);
+        intent.putExtra("visitado", 0);
+        startActivity(intent);
+    }
+
+    public void ordenar(View v){
+        // Do something when the user clicks on the help item
+        recyclerView = findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        visitMeAdapter.ordenAlfabetico();
+        recyclerView.setAdapter(visitMeAdapter);
+        setListener();
     }
 }
