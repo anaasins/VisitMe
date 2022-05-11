@@ -109,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /** Called when the user taps the Menu button */
+    public void abrirGallery(View view) {
+        Intent intent = new Intent(this, GalleryActivity.class);
+        startActivity(intent);
+    }
+
     /*MENU*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
